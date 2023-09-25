@@ -1,0 +1,32 @@
+/* Carousel CSS Start */
+.carousel-caption.carousel-item1 {
+    position: absolute;
+    right: 0;
+    bottom: 14.25rem;
+    left: 110px;
+    text-align: left;
+}
+.carousel-caption.carousel-caption.carousel-item2 {
+    position: absolute;
+    right: 0;
+    bottom: 14.25rem;
+    left: 110px;
+    color: #000000;
+    text-align: left;
+}
+.home {
+    font-size: 5rem;
+}
+a:link.bg, a:visited.bg {
+    background-color: #52549F;
+    color: white;
+    padding: 15px 25px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    border-radius: 10px;
+}
+a:hover.bg, a:active.bg {
+    background-color: #A70C57;
+}
+/* Carousel CSS End */
