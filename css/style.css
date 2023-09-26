@@ -54,3 +54,42 @@ a:hover.bg, a:active.bg {
     border: 1px;
 }
 /* Section1 End */
+
+/* Home Product Item Start */
+.card.item {
+    border: none;
+}
+img.card-img-top.radius-padding {
+    background-color: #F8F9FA;
+}
+.feature {
+    font-size: 20px;
+    font-weight: bold;
+}
+.price-color {
+    color: #A70C57;
+    font-size: 20px;
+    font-weight: bold;
+}
+.overlay {
+    position: absolute;
+    bottom: 94px;
+    height: 15%;
+    width: 100%;
+    opacity: 0;
+    transition: .3s ease;
+    background-color: #52549F;
+}
+.card:hover .overlay {
+    opacity: 1;
+}
+.icon {
+    color: white;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    text-decoration: none;
+}
+/* Home Product Item End */
