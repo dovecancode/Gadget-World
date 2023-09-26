@@ -30,3 +30,27 @@ a:hover.bg, a:active.bg {
     background-color: #A70C57;
 }
 /* Carousel CSS End */
+
+/* Section1 Start */
+.section-info {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+.section-info-text p {
+    margin: 0;
+}
+.section-info-text p:first-child {
+    font-weight: bold;
+}
+.space {
+    margin-top: 16px;
+    margin-bottom: 1rem;
+    margin-left: 15px;
+    margin-right: 15px;
+}
+.row.border {
+    border: 1px;
+}
+/* Section1 End */
