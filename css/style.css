@@ -1,3 +1,22 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;400&display=swap');
+
+:root {
+  --primary-color: #52549f;
+  --secondary-color: #a70c57;
+}
+body {
+  font-family: 'Montserrat', sans-serif;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+}
+
+a {
+  text-decoration: none;
+}
+
 /* Nav Custom Css */
 .me-auto.me-center {
   margin-left: auto;
@@ -101,3 +120,57 @@ img.card-img-top.radius-padding {
   text-decoration: none;
 }
 /* Home Product Item End */
+
+/* Footer Stles */
+.footer {
+  font-weight: 100;
+}
+
+.footer h4 {
+  font-weight: bold;
+  font-size: 1.6rem;
+  margin-bottom: 1rem;
+  margin-top: 1rem;
+}
+.foooter-social a,
+.footer .info a,
+.footer .links a {
+  color: #fff;
+}
+
+.foooter-social i {
+  font-size: 1.6rem;
+}
+
+.col-md-3.touch p:nth-child(2) {
+  margin: 0;
+}
+
+.col-md-3.touch p:nth-child(3) {
+  font-size: 2.3rem;
+  font-weight: bold;
+}
+
+.footer .input-group-text.sub {
+  background: var(--primary-color);
+  color: #fff;
+
+  border-left: 0;
+}
+
+.footer .form-control.email-input {
+  background: transparent;
+  border-right: 0;
+}
+
+.footer .form-control.email-input::placeholder {
+  color: #fff;
+}
+
+.footer .newsletter p {
+  margin-bottom: 3rem;
+}
+
+.copyright .d-flex {
+  row-gap: 2rem;
+}

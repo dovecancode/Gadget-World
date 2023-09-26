@@ -1,0 +1,11 @@
+/* utils */
+.btn-purple {
+  background: var(--primary-color);
+  color: #fff;
+  transition: all 0.5s;
+}
+
+.btn-purple:hover {
+  background: var(--secondary-color);
+  color: #fff;
+}
