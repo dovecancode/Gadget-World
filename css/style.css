@@ -174,3 +174,33 @@ img.card-img-top.radius-padding {
 .copyright .d-flex {
   row-gap: 2rem;
 }
+
+/* Modal Login-Signup Start */
+.modal.custom .moda-login {
+  overflow: hidden;
+}
+
+.modal.custom .modal-form {
+  display: flex;
+}
+
+.modal.custom .modal-form {
+  display: flex;
+  transition: all 0.5s ease;
+}
+
+.modal.custom .modal-form form {
+  display: flex;
+  flex-direction: column;
+  flex: 0 0 100%;
+}
+
+.modal-form.reg {
+  transform: translateX(-100%);
+}
+
+.modal-form button {
+  align-self: flex-start;
+}
+
+/* Modal Login-Signup End */
