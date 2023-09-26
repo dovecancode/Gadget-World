@@ -1,95 +1,103 @@
+/* Nav Custom Css */
+.me-auto.me-center {
+  margin-left: auto;
+  column-gap: 2rem;
+}
+
 /* Carousel CSS Start */
 .carousel-caption.carousel-item1 {
-    position: absolute;
-    right: 0;
-    bottom: 14.25rem;
-    left: 110px;
-    text-align: left;
+  position: absolute;
+  right: 0;
+  bottom: 14.25rem;
+  left: 110px;
+  text-align: left;
 }
 .carousel-caption.carousel-caption.carousel-item2 {
-    position: absolute;
-    right: 0;
-    bottom: 14.25rem;
-    left: 110px;
-    color: #000000;
-    text-align: left;
+  position: absolute;
+  right: 0;
+  bottom: 14.25rem;
+  left: 110px;
+  color: #000000;
+  text-align: left;
 }
 .home {
-    font-size: 5rem;
+  font-size: 5rem;
 }
-a:link.bg, a:visited.bg {
-    background-color: #52549F;
-    color: white;
-    padding: 15px 25px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    border-radius: 10px;
+a:link.bg,
+a:visited.bg {
+  background-color: #52549f;
+  color: white;
+  padding: 15px 25px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  border-radius: 10px;
 }
-a:hover.bg, a:active.bg {
-    background-color: #A70C57;
+a:hover.bg,
+a:active.bg {
+  background-color: #a70c57;
 }
 /* Carousel CSS End */
 
 /* Section1 Start */
 .section-info {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
 }
 .section-info-text p {
-    margin: 0;
+  margin: 0;
 }
 .section-info-text p:first-child {
-    font-weight: bold;
+  font-weight: bold;
 }
 .space {
-    margin-top: 16px;
-    margin-bottom: 1rem;
-    margin-left: 15px;
-    margin-right: 15px;
+  margin-top: 16px;
+  margin-bottom: 1rem;
+  margin-left: 15px;
+  margin-right: 15px;
 }
 .row.border {
-    border: 1px;
+  border: 1px;
 }
 /* Section1 End */
 
 /* Home Product Item Start */
 .card.item {
-    border: none;
+  border: none;
 }
 img.card-img-top.radius-padding {
-    background-color: #F8F9FA;
+  background-color: #f8f9fa;
 }
 .feature {
-    font-size: 20px;
-    font-weight: bold;
+  font-size: 20px;
+  font-weight: bold;
 }
 .price-color {
-    color: #A70C57;
-    font-size: 20px;
-    font-weight: bold;
+  color: #a70c57;
+  font-size: 20px;
+  font-weight: bold;
 }
 .overlay {
-    position: absolute;
-    bottom: 94px;
-    height: 15%;
-    width: 100%;
-    opacity: 0;
-    transition: .3s ease;
-    background-color: #52549F;
+  position: absolute;
+  bottom: 94px;
+  height: 15%;
+  width: 100%;
+  opacity: 0;
+  transition: 0.3s ease;
+  background-color: #52549f;
 }
 .card:hover .overlay {
-    opacity: 1;
+  opacity: 1;
 }
 .icon {
-    color: white;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    -ms-transform: translate(-50%, -50%);
-    text-decoration: none;
+  color: white;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  text-decoration: none;
 }
 /* Home Product Item End */
