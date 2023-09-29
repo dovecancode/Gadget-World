@@ -119,6 +119,19 @@ img.card-img-top.radius-padding {
   -ms-transform: translate(-50%, -50%);
   text-decoration: none;
 }
+.category {
+  font-size: 20px;
+  font-weight: bold;
+}
+a:link.font-color, 
+a:visited.font-color {
+  color: #000000;
+  text-decoration: none;
+}
+a:hover.font-color, 
+a:active.font-color {
+  color: #A70C57;
+}
 /* Home Product Item End */
 
 /* Footer Stles */
