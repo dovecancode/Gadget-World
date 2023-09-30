@@ -9,3 +9,7 @@
   background: var(--secondary-color);
   color: #fff;
 }
+
+.btn-purple.btn-block {
+  width: 100%;
+}
