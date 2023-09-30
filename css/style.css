@@ -123,14 +123,14 @@ img.card-img-top.radius-padding {
   font-size: 20px;
   font-weight: bold;
 }
-a:link.font-color, 
+a:link.font-color,
 a:visited.font-color {
   color: #000000;
   text-decoration: none;
 }
-a:hover.font-color, 
+a:hover.font-color,
 a:active.font-color {
-  color: #A70C57;
+  color: #a70c57;
 }
 /* Home Product Item End */
 
@@ -217,3 +217,39 @@ a:active.font-color {
 }
 
 /* Modal Login-Signup End */
+
+/* Item Page  */
+.items-container {
+  position: relative;
+  transform: translateZ(0);
+}
+
+.items-container i {
+  position: absolute;
+  cursor: pointer;
+  top: 30%;
+  transform: translate(-50%);
+}
+
+.items-container i:nth-of-type(1) {
+  left: -20px;
+}
+
+.items-container i:nth-of-type(2) {
+  right: -22px;
+}
+
+.items-container .active {
+  border: 2px solid var(--secondary-color);
+}
+
+.slider-thumb {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: calc((100% / 3) - 4rem);
+  overflow: hidden;
+  scroll-behavior: smooth;
+}
+.slider-thumb li {
+  width: 60px;
+}
