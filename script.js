@@ -17,7 +17,7 @@ const renderHomeProducts = () => {
         <a href="item-details.html?id=3">
           <div class="card-body text-center">
             <h5 class="card-title"><b>${product.title}</b></h5>
-            <p class="card-text price-color">₱ ${product.price}</p>
+            <p class="card-text price-color">₱${formatPrice(product.price)}</p>
           </div>
         </a>
       </div>
@@ -44,7 +44,7 @@ const renderShopPageItems = () => {
         <a href="item-details.html?id=3">
           <div class="card-body text-center">
             <h5 class="card-title"><b>${product.title}</b></h5>
-            <p class="card-text price-color">₱ ${product.price}</p>
+            <p class="card-text price-color">₱${formatPrice(product.price)}</p>
           </div>
         </a>
       </div>
@@ -76,7 +76,7 @@ const renderSpecificItem = () => {
     <div class="col-md-8">
       <h1 class="text-black">${product.title}</h1>
       <p>${product.desc}</p>
-      <p><strong class="text-primary h4">₱ ${product.price}</strong></p>
+      <p><strong class="text-primary h4">₱${formatPrice(product.price)}</strong></p>
       <div class="mb-5">
         <div class="row align-items-center item-quantity-container">
           <div class="col-sm-5">
@@ -105,7 +105,13 @@ const renderSpecificItem = () => {
 
   productDetails.innerHTML = foundItemProduct
 
+  // Item thumb slider and featured image
   sliderThumb()
+}
+
+// stack overflow
+const formatPrice = (num) => {
+  return String(num).replace(/(.)(?=(\d{3})+$)/g, '$1,')
 }
 
 const renderWhichPage = () => {
