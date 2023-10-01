@@ -1,0 +1,255 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;400&display=swap');
+
+:root {
+  --primary-color: #52549f;
+  --secondary-color: #a70c57;
+}
+body {
+  font-family: 'Montserrat', sans-serif;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+}
+
+a {
+  text-decoration: none;
+}
+
+/* Nav Custom Css */
+.me-auto.me-center {
+  margin-left: auto;
+  column-gap: 2rem;
+}
+
+/* Carousel CSS Start */
+.carousel-caption.carousel-item1 {
+  position: absolute;
+  right: 0;
+  bottom: 14.25rem;
+  left: 110px;
+  text-align: left;
+}
+.carousel-caption.carousel-caption.carousel-item2 {
+  position: absolute;
+  right: 0;
+  bottom: 14.25rem;
+  left: 110px;
+  color: #000000;
+  text-align: left;
+}
+.home {
+  font-size: 5rem;
+}
+a:link.bg,
+a:visited.bg {
+  background-color: #52549f;
+  color: white;
+  padding: 15px 25px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  border-radius: 10px;
+}
+a:hover.bg,
+a:active.bg {
+  background-color: #a70c57;
+}
+/* Carousel CSS End */
+
+/* Section1 Start */
+.section-info {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+.section-info-text p {
+  margin: 0;
+}
+.section-info-text p:first-child {
+  font-weight: bold;
+}
+.space {
+  margin-top: 16px;
+  margin-bottom: 1rem;
+  margin-left: 15px;
+  margin-right: 15px;
+}
+.row.border {
+  border: 1px;
+}
+/* Section1 End */
+
+/* Home Product Item Start */
+.card.item {
+  border: none;
+}
+img.card-img-top.radius-padding {
+  background-color: #f8f9fa;
+}
+.feature {
+  font-size: 20px;
+  font-weight: bold;
+}
+.price-color {
+  color: #a70c57;
+  font-size: 20px;
+  font-weight: bold;
+}
+.overlay {
+  position: absolute;
+  bottom: 94px;
+  height: 15%;
+  width: 100%;
+  opacity: 0;
+  transition: 0.3s ease;
+  background-color: #52549f;
+}
+.card:hover .overlay {
+  opacity: 1;
+}
+.icon {
+  color: white;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  text-decoration: none;
+}
+.category {
+  font-size: 20px;
+  font-weight: bold;
+}
+a:link.font-color,
+a:visited.font-color {
+  color: #000000;
+  text-decoration: none;
+}
+a:hover.font-color,
+a:active.font-color {
+  color: #a70c57;
+}
+/* Home Product Item End */
+
+/* Footer Stles */
+.footer {
+  font-weight: 100;
+}
+
+.footer h4 {
+  font-weight: bold;
+  font-size: 1.6rem;
+  margin-bottom: 1rem;
+  margin-top: 1rem;
+}
+.foooter-social a,
+.footer .info a,
+.footer .links a {
+  color: #fff;
+}
+
+.foooter-social i {
+  font-size: 1.6rem;
+}
+
+.col-md-3.touch p:nth-child(2) {
+  margin: 0;
+}
+
+.col-md-3.touch p:nth-child(3) {
+  font-size: 2.3rem;
+  font-weight: bold;
+}
+
+.footer .input-group-text.sub {
+  background: var(--primary-color);
+  color: #fff;
+
+  border-left: 0;
+}
+
+.footer .form-control.email-input {
+  background: transparent;
+  border-right: 0;
+}
+
+.footer .form-control.email-input::placeholder {
+  color: #fff;
+}
+
+.footer .newsletter p {
+  margin-bottom: 3rem;
+}
+
+.copyright .d-flex {
+  row-gap: 2rem;
+}
+
+/* Modal Login-Signup Start */
+.modal.custom .moda-login {
+  overflow: hidden;
+}
+
+.modal.custom .modal-form {
+  display: flex;
+}
+
+.modal.custom .modal-form {
+  display: flex;
+  transition: all 0.5s ease;
+}
+
+.modal.custom .modal-form form {
+  display: flex;
+  flex-direction: column;
+  flex: 0 0 100%;
+}
+
+.modal-form.reg {
+  transform: translateX(-100%);
+}
+
+.modal-form button {
+  align-self: flex-start;
+}
+
+/* Modal Login-Signup End */
+
+/* Item Page  */
+.items-container {
+  position: relative;
+  transform: translateZ(0);
+}
+
+.items-container i {
+  position: absolute;
+  cursor: pointer;
+  top: 30%;
+  transform: translate(-50%);
+}
+
+.items-container i:nth-of-type(1) {
+  left: -20px;
+}
+
+.items-container i:nth-of-type(2) {
+  right: -22px;
+}
+
+.items-container .active {
+  border: 2px solid var(--secondary-color);
+}
+
+.slider-thumb {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: calc((100% / 3) - 4rem);
+  overflow: hidden;
+  scroll-behavior: smooth;
+}
+.slider-thumb li {
+  width: 60px;
+}
