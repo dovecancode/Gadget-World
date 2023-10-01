@@ -55,6 +55,59 @@ const renderShopPageItems = () => {
   shopPageProductsEl.innerHTML = product
 }
 
+const renderSpecificItem = () => {
+  const itemId = window.location.search.split('=')[1]
+  const productDetails = document.getElementById('product-details')
+  const foundItemProduct = productsData
+    .map((product) => {
+      if (product.id === +itemId) {
+        return ` <div class="col-md-4">
+      <div class="featured-img">
+        <img src="${product.featureImg}" alt="${product.title}" class="img-fluid product-feature" />
+      </div>
+      <div class="items-container">
+        <i id="left" class="fa-solid fa-chevron-left"></i>
+        <i id="right" class="fa-solid fa-chevron-right"></i>
+        <ul class="slider-thumb mt-3">
+        ${product.imgs.map((img) => `<li><img class="img-fluid" src="${img}" alt="" /></li>`).join(' ')} 
+        </ul>
+      </div>
+    </div>
+    <div class="col-md-8">
+      <h1 class="text-black">${product.title}</h1>
+      <p>${product.desc}</p>
+      <p><strong class="text-primary h4">₱ ${product.price}</strong></p>
+      <div class="mb-5">
+        <div class="row align-items-center item-quantity-container">
+          <div class="col-sm-5">
+            <div class="q border px-3 quantity d-flex align-items-center justify-content-between">
+              <p class="my-2">Quantity</p>
+              <div class="quantity">
+                <button class="btn"><i class="fa-solid fa-caret-left"></i></button>
+                <span>1</span>
+                <button class="btn"><i class="fa-solid fa-caret-right"></i></button>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-3 cart-container">
+            <p class="my-2"><button class="btn btn-purple">Add To Cart</button></p>
+          </div>
+        </div>
+        <div class="mt-3 px-3 py-2 mb-1 d-inline-block bg-light">
+          <strong class="text-uppercase text-dark">Category:</strong>
+          <a class="reset-anchor ms-2" href="#!">${product.category}</a>
+        </div>
+      </div>
+    </div>`
+      }
+    })
+    .join('')
+
+  productDetails.innerHTML = foundItemProduct
+
+  sliderThumb()
+}
+
 const renderWhichPage = () => {
   switch (currentPage) {
     case '/':
@@ -63,6 +116,9 @@ const renderWhichPage = () => {
       break
     case '/products.html':
       renderShopPageItems()
+      break
+    case '/item-details.html':
+      renderSpecificItem()
       break
   }
 }
