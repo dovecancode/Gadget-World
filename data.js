@@ -10,7 +10,7 @@ const products = [
   },
   {
     id: 2,
-    title: 'SAMSUNG 50-INCH 4K',
+    title: 'HUAWEI WATCH GT 3',
     category: 'watch',
     price: 8990.0,
     featureImg: './img/smartWatch/sw-1.jpg',
@@ -19,7 +19,7 @@ const products = [
   },
   {
     id: 3,
-    title: 'HUAWEI WATCH GT 3',
+    title: 'SAMSUNG 50-INCH 4K',
     category: 'tv',
     price: 8990.0,
     featureImg: './img/smartTv/st-1.jpg',
