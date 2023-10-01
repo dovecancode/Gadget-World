@@ -13,3 +13,19 @@
 .btn-purple.btn-block {
   width: 100%;
 }
+
+.product-item {
+  position: relative;
+  overflow: hidden;
+  transition: 0.3s ease;
+}
+
+.add-to-cart {
+  position: absolute;
+  bottom: -38px;
+  left: 0;
+}
+
+.card.item:hover .add-to-cart {
+  bottom: 0;
+}

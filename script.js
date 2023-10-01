@@ -1,55 +1,40 @@
-// customize bootstrap modal
-// created a register and login kind of slider
-;(function () {
-  const loginBtn = document.getElementById('loginBtn')
-  const registerBtn = document.getElementById('registerBtn')
-  const modalForm = document.querySelector('.modal-form')
+const currentPage = window.location.pathname
+const productsData = products
 
-  const onClickReg = () => {
-    modalForm.classList.add('reg')
-  }
-
-  const onClickLogin = () => {
-    if (modalForm.classList.contains('reg')) {
-      modalForm.classList.remove('reg')
-    }
-  }
-
-  registerBtn.addEventListener('click', onClickReg)
-  loginBtn.addEventListener('click', onClickLogin)
-})()
-
-// Item thumb slider and featured image
-;(function () {
-  const sliderThumb = document.querySelector('.slider-thumb')
-  const sliderThumbWidth = sliderThumb.querySelector('li').offsetWidth * 4
-  const sliderThumbs = sliderThumb.querySelectorAll('li')
-  const sliderBtns = document.querySelectorAll('.items-container i')
-  const productFeature = document.querySelector('.product-feature')
-
-  for (let i = 0; i < sliderBtns.length; i++) {
-    const element = sliderBtns[i]
-    element.addEventListener('click', function (e) {
-      sliderThumb.scrollLeft += element.id === 'left' ? -sliderThumbWidth : sliderThumbWidth
+const renderHomeProducts = () => {
+  const homeProductsEl = document.getElementById('home-products')
+  const prodEight = productsData
+    .slice(0, 8)
+    .map((product) => {
+      return `<div class="col-md-3 col-sm-6 mb-3">
+      <div class="card item">
+        <a href="item-details.html?id=${product.id}">
+          <div class="product-item">
+            <img src="${product.featureImg}" class="card-img-top radius-padding" alt="Cell Phone" />
+            <a role="button" class="btn btn-purple btn-block add-to-cart" id="add-to-cart" onclick="addToCart(${product.id})">ADD TO CART</a>
+          </div>
+        </a>
+        <a href="item-details.html?id=3">
+          <div class="card-body text-center">
+            <h5 class="card-title"><b>${product.title}</b></h5>
+            <p class="card-text price-color">₱ ${product.price}</p>
+          </div>
+        </a>
+      </div>
+    </div>`
     })
-  }
+    .join('')
 
-  // function for removing active class
-  const removeActiveClass = () => {
-    for (let i = 0; i < sliderThumbs.length; i++) {
-      const element = sliderThumbs[i]
-      element.classList.remove('active')
-    }
-  }
+  homeProductsEl.innerHTML = prodEight
+}
 
-  // loop through li elements and add active class to it when its click to a thumbnail
-  for (let i = 0; i < sliderThumbs.length; i++) {
-    const element = sliderThumbs[i]
-    element.addEventListener('click', function () {
-      removeActiveClass() // removing the active class
-      element.classList.add('active')
-      // change the featured image from the thumbnail image
-      productFeature.src = element.firstChild.src
-    })
+const renderWhichPage = () => {
+  switch (currentPage) {
+    case '/':
+    case '/index.html':
+      renderHomeProducts()
+      break
   }
-})()
+}
+
+renderWhichPage()
