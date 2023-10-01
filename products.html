@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
     <link rel="stylesheet" href="css/style.css" />
     <link rel="stylesheet" href="css/utils.css" />
-    <title>Gadget Word</title>
+    <title>Product</title>
   </head>
   <body>
     <!-- Nav Start -->
@@ -44,96 +44,37 @@
       </div>
     </nav>
     <!-- Nav End -->
-    <!-- Hero start -->
-    <div id="carouselExampleSlidesOnly" class="carousel slide" data-bs-ride="carousel">
-      <div class="carousel-inner">
-        <div class="carousel-item active">
-          <img src="img/hero 1.jpg" class="d-block w-100" alt="headset" />
-          <div class="carousel-caption carousel-item1 d-none d-md-block">
-            <h2 class="home">Wireless Bluetooth <br />Headphones</h2>
-            <p>Earphone for iPhone Samsung</p>
-            <a class="bg" href="#">SHOP NOW</a>
-          </div>
-        </div>
-        <div class="carousel-item active">
-          <img src="img/hero 2.jpg" class="d-block w-100" alt="watch" />
-          <div class="carousel-caption carousel-item2 d-none d-md-block">
-            <h2 class="home">Smart Watch</h2>
-            <p>Compatible with Android and Apple</p>
-            <a class="bg" href="#">SHOP NOW</a>
-          </div>
-        </div>
-      </div>
-    </div>
-    <!-- Hero end -->
-
-    <!-- Section1 start -->
-    <section class="home-info">
+    <!-- Product Start -->
+    <section class="product">
       <div class="container pt-5">
-        <div class="row border pt-3 pb-3">
-          <div class="col-sm-3 border-end">
-            <div class="section-info">
-              <div class="section-info-icon">
-                <img src="img/Vector1.png" alt="" />
+        <div class="row pt-5">
+          <div class="col-md-3">
+            <div class="categories">
+              <div class="section-header">
+                <h1 class="h3 heading fw-bold">Categories</h1>
               </div>
-              <div class="section-info-text">
-                <p class="space">Free Delivery</p>
-                <p>On orders of 200+</p>
-              </div>
+              <ul>
+                <li>All</li>
+                <li>Cell Phone</li>
+                <li>Outdoor Camera</li>
+                <li>Smart watch</li>
+                <li>Smart TV</li>
+                <li>CPU Air cooler</li>
+                <li>Wireless speaker</li>
+                <li>Laptop</li>
+                <li>Wireless headphones</li>
+                <li>Keyboard</li>
+              </ul>
             </div>
           </div>
-          <div class="col-sm-3 border-end">
-            <div class="section-info">
-              <div class="section-info-icon">
-                <img src="img/Vector2.png" alt="" />
-              </div>
-              <div class="section-info-text">
-                <p class="space">COD</p>
-                <p>Cash on Delivery</p>
-              </div>
-            </div>
-          </div>
-          <div class="col-sm-3 border-end">
-            <div class="section-info">
-              <div class="section-info-icon">
-                <img src="img/Vector3.png" alt="" />
-              </div>
-              <div class="section-info-text">
-                <p class="space">Free Gift Box</p>
-                <p>Buy a Gift</p>
-              </div>
-            </div>
-          </div>
-          <div class="col-sm-3">
-            <div class="section-info">
-              <div class="section-info-icon">
-                <img src="img/Vector4.png" alt="" />
-              </div>
-              <div class="section-info-text">
-                <p class="space">Free Support 24/7</p>
-                <p>Online 24hrs a Day</p>
-              </div>
-            </div>
+          <div class="col-md-9">
+            <!-- Dynamic Products goes here -->
+            <div class="row" id="product-items"></div>
           </div>
         </div>
       </div>
     </section>
-    <!-- Section1 end -->
-
-    <!-- Section2 start -->
-    <section class="home-product">
-      <div class="container pt-5">
-        <div>
-          <p class="feature">Featured Products</p>
-        </div>
-        <!-- Dynamic Product goes here -->
-        <div class="row pt-5" id="home-products"></div>
-        <div class="text-center pt-5 pb-5">
-          <a class="bg" href="products.html">VIEW MORE</a>
-        </div>
-      </div>
-    </section>
-    <!-- Section2 end -->
+    <!-- Product End -->
     <!-- Footer Start -->
     <footer class="footer bg-black text-light py-5">
       <div class="container">
@@ -172,7 +113,7 @@
             <p>Join the 60.000+ subscribers and receive a fresh voucher for a discount each Saturday.</p>
             <form class="d-flex" role="search">
               <!-- <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" />
-              <button class="btn btn-outline-success" type="submit">Search</button> -->
+            <button class="btn btn-outline-success" type="submit">Search</button> -->
               <div class="input-group mb-3">
                 <input type="text" class="form-control email-input" placeholder="Your email address..." aria-label="Recipient's username" aria-describedby="basic-addon2" />
                 <button class="input-group-text sub" id="basic-addon2">subscribe</button>
@@ -191,7 +132,6 @@
       </div>
     </div>
     <!-- Copyright Start -->
-
     <!-- Modal -->
     <div class="modal custom fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div class="modal-dialog">
@@ -236,10 +176,10 @@
         </div>
       </div>
     </div>
+    <!-- Modal End-->
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
     <script src="data.js"></script>
-    <script src="effect.js"></script>
     <script src="script.js"></script>
   </body>
 </html>

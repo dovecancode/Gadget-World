@@ -29,3 +29,13 @@
 .card.item:hover .add-to-cart {
   bottom: 0;
 }
+
+/* Shop Page Section Heading */
+.h3.heading {
+  background: var(--primary-color);
+  color: #fff;
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+  letter-spacing: 1px;
+  font-size: 1rem;
+}
