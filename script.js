@@ -244,6 +244,13 @@ const renderCartItems = () => {
   })
 }
 
+const deleteCartItem = (id) => {
+  cartCountItems = cartCountItems.filter((cart) => cart.id !== +id)
+  localStorage.setItem('cart', JSON.stringify(cartCountItems))
+  renderCartItems()
+  renderCartTotal()
+}
+
 const renderCartTotal = () => {
   const subtotal = document.getElementById('subtotal')
   const deliveryFeeOption = document.getElementById('deliveryFeeOption')
