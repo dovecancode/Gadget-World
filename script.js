@@ -256,7 +256,7 @@ const renderCartTotal = () => {
   const deliveryFeeOption = document.getElementById('deliveryFeeOption')
   const deliveryFee = document.getElementById('deliveryFee')
   const total = document.getElementById('total')
-
+  const checkoutTotal = document.getElementById('checkoutTotal')
   const checkoutBtn = document.getElementById('checkoutBtn')
   let totalPrice = 0
   let shippingFee = 0
@@ -268,11 +268,14 @@ const renderCartTotal = () => {
 
   subtotal.textContent = `₱${formatPrice(totalPrice)}`
   total.textContent = `₱${formatPrice(totalPrice + +shippingFee)}`
+  checkoutTotal.textContent = `₱${formatPrice(totalPrice + +shippingFee)}`
 
+  //function event for shipping fee
   deliveryFeeOption.addEventListener('change', function () {
     shippingFee = deliveryFeeOption.value
     deliveryFee.textContent = `₱${deliveryFeeOption.value}`
     total.textContent = `₱${formatPrice(totalPrice + +shippingFee)}`
+    checkoutTotal.textContent = `₱${formatPrice(totalPrice + +shippingFee)}`
     // if there is shipping fee make the button enable else disabled
     Number(shippingFee) ? (checkoutBtn.disabled = false) : (checkoutBtn.disabled = true)
   })
