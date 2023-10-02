@@ -1,6 +1,6 @@
 // customize bootstrap modal
 // created a register and login kind of slider
-;(function () {
+export const formSlider = () => {
   const loginBtn = document.getElementById('loginBtn')
   const registerBtn = document.getElementById('registerBtn')
   const modalForm = document.querySelector('.modal-form')
@@ -17,10 +17,10 @@
 
   registerBtn.addEventListener('click', onClickReg)
   loginBtn.addEventListener('click', onClickLogin)
-})()
+}
 
 // Item thumb slider and featured image
-const sliderThumb = () => {
+export const sliderThumb = () => {
   const sliderThumb = document.querySelector('.slider-thumb')
   const sliderThumbWidth = sliderThumb.querySelector('li').offsetWidth * 4
   const sliderThumbs = sliderThumb.querySelectorAll('li')
