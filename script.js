@@ -301,6 +301,53 @@ const changeQuantity = (action, id) => {
   renderCartTotal()
 }
 
+const renderRecomendeProd = (el) => {
+  let productEight = productsData
+    .slice(0, 4)
+    .map((product) => {
+      return `<div class="col-md-3 col-sm-6 mb-3">
+      <a href="item-details.html?id=${product.id}">
+        <div class="card item">
+        <div class="product-item">
+          <img src="${product.featureImg}" class="card-img-top radius-padding" alt="Cell Phone" />
+          <button type="button" class="btn btn-purple btn-block add-to-cart" id="add-to-cart" data-id="${product.id}">ADD TO CART</button>
+        </div>
+        </a>
+      <a href="item-details.html?id=${product.id}">
+        <div class="card-body text-center">
+          <h5 class="card-title"><b>${product.title}</b></h5>
+          <p class="card-text price-color">₱${formatPrice(product.price)}</p>
+        </div>
+      </a>
+    </div>
+  </div>`
+    })
+    .join(' ')
+
+  el.innerHTML = productEight
+  // updateCart()
+  const cartBtns = document.querySelectorAll('.add-to-cart')
+  cartBtns.forEach((btn) => {
+    btn.addEventListener('click', function (e) {
+      e.preventDefault()
+      addToCart(+btn.dataset.id)
+      btn.disabled = 'true'
+      btn.style.pointerEvents = 'unset'
+      btn.textContent = 'In Cart'
+      alert('Added to Cart')
+    })
+  })
+  cartBtns.forEach((btn) => {
+    const id = +btn.dataset.id
+    const isInCart = cartCountItems.find((item) => item.id === id)
+    if (isInCart) {
+      btn.disabled = 'true'
+      btn.style.pointerEvents = 'unset'
+      btn.textContent = 'In Cart'
+    }
+  })
+}
+
 // stack overflow
 const formatPrice = (num) => {
   return String(num).replace(/(.)(?=(\d{3})+$)/g, '$1,')
@@ -316,11 +363,15 @@ const renderWhichPage = () => {
       renderShopPageItems()
       break
     case '/item-details.html':
+      const relatedProd = document.getElementById('relatedProd')
       renderSpecificItem()
+      renderRecomendeProd(relatedProd)
       break
     case '/cart.html':
+      const recommendProd = document.getElementById('recommendProd')
       renderCartItems()
       renderCartTotal()
+      renderRecomendeProd(recommendProd)
       break
   }
 }
