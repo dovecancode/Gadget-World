@@ -1,5 +1,25 @@
 const currentPage = window.location.pathname
-const productsData = products
+import productsData from './data.js'
+import { formSlider, sliderThumb } from './effect.js'
+
+const cartCountEl = document.getElementById('cartCount')
+
+// function for fetching data from localStorage
+const getCartFromStorage = () => {
+  let cart
+  if (localStorage.getItem('cart') === null) {
+    cart = []
+  } else {
+    cart = JSON.parse(localStorage.getItem('cart'))
+  }
+  return cart
+}
+
+// store data from localstorage to a variable
+let cartCountItems = getCartFromStorage()
+
+// for UI -> indicates how many items in cart page
+cartCountEl.textContent = cartCountItems.length
 
 const renderHomeProducts = () => {
   const homeProductsEl = document.getElementById('home-products')
@@ -11,7 +31,7 @@ const renderHomeProducts = () => {
         <a href="item-details.html?id=${product.id}">
           <div class="product-item">
             <img src="${product.featureImg}" class="card-img-top radius-padding" alt="Cell Phone" />
-            <a role="button" class="btn btn-purple btn-block add-to-cart" id="add-to-cart" onclick="addToCart(${product.id})">ADD TO CART</a>
+            <button type="button" class="btn btn-purple btn-block add-to-cart" id="add-to-cart" data-id="${product.id}">ADD TO CART</button>
           </div>
         </a>
         <a href="item-details.html?id=3">
@@ -26,6 +46,45 @@ const renderHomeProducts = () => {
     .join('')
 
   homeProductsEl.innerHTML = prodEight
+
+  const cartBtns = document.querySelectorAll('.add-to-cart')
+  cartBtns.forEach((btn) => {
+    btn.addEventListener('click', function (e) {
+      e.preventDefault()
+      addToCart(+btn.dataset.id)
+      btn.disabled = 'true'
+      btn.style.pointerEvents = 'unset'
+      btn.textContent = 'In Cart'
+      alert('Added to Cart')
+    })
+  })
+
+  cartBtns.forEach((btn) => {
+    const id = +btn.dataset.id
+    const isInCart = cartCountItems.find((item) => item.id === id)
+
+    if (isInCart) {
+      btn.disabled = 'true'
+      btn.style.pointerEvents = 'unset'
+      btn.textContent = 'In Cart'
+    }
+  })
+}
+
+// addcart to localstorage
+const addToCart = (id) => {
+  const cart = getCartFromStorage()
+  const itemFound = productsData.find((product) => product.id === id)
+
+  cart.push({ ...itemFound, cartCount: 1 })
+
+  localStorage.setItem('cart', JSON.stringify(cart))
+
+  updateCart()
+}
+
+const updateCart = () => {
+  cartCountEl.textContent = getCartFromStorage().length
 }
 
 // Render all items in Shop Page
@@ -128,5 +187,5 @@ const renderWhichPage = () => {
       break
   }
 }
-
+formSlider()
 renderWhichPage()
