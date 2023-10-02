@@ -97,7 +97,7 @@ const renderShopPageItems = () => {
         <a href="item-details.html?id=${product.id}">
           <div class="product-item">
             <img src="${product.featureImg}" class="card-img-top radius-padding" alt="Cell Phone" />
-            <a role="button" class="btn btn-purple btn-block add-to-cart">ADD TO CART</a>
+            <button type="button" class="btn btn-purple btn-block add-to-cart" id="add-to-cart" data-id="${product.id}">ADD TO CART</button>
           </div>
         </a>
         <a href="item-details.html?id=3">
@@ -112,6 +112,29 @@ const renderShopPageItems = () => {
     .join('')
 
   shopPageProductsEl.innerHTML = product
+
+  const cartBtns = document.querySelectorAll('.add-to-cart')
+  cartBtns.forEach((btn) => {
+    btn.addEventListener('click', function (e) {
+      e.preventDefault()
+      addToCart(+btn.dataset.id)
+      btn.disabled = 'true'
+      btn.style.pointerEvents = 'unset'
+      btn.textContent = 'In Cart'
+      alert('Added to Cart')
+    })
+  })
+
+  cartBtns.forEach((btn) => {
+    const id = +btn.dataset.id
+    const isInCart = cartCountItems.find((item) => item.id === id)
+
+    if (isInCart) {
+      btn.disabled = 'true'
+      btn.style.pointerEvents = 'unset'
+      btn.textContent = 'In Cart'
+    }
+  })
 }
 
 const renderSpecificItem = () => {
