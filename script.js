@@ -191,6 +191,109 @@ const renderSpecificItem = () => {
   sliderThumb()
 }
 
+const renderCartItems = () => {
+  const tbody = document.querySelector('tbody')
+  if (cartCountItems.length) {
+    tbody.innerHTML = cartCountItems
+      .map((cart) => {
+        return `<tr>
+        <td class="ps-0 py-3 border-light">
+          <a href="item-details.html?id=${cart.id}" class="d-flex gap-3 align-items-center">
+            <img src="${cart.featureImg}" alt="" width="60" />
+            <p class="mt-4">${cart.title}</p>
+          </a>
+        </td>
+        <td class="p-3 align-middle border-light">₱${formatPrice(cart.price)}</td>
+        <td class="p-3 align-middle border-light">
+          <div class="q border px-2 quantity d-flex align-items-center justify-content-between">
+            <p class="my-2">Quantity</p>
+            <div class="quantity">
+              <button class="btn subtractQ" data-id="${cart.id}"><i class="fa-solid fa-caret-left"></i></button>
+              <span id="quantity">${cart.cartCount}</span>
+              <button class="btn addQ" data-id="${cart.id}"><i class="fa-solid fa-caret-right"></i></button>
+            </div>
+          </div>
+        </td>
+        <td class="p-3 align-middle border-light">₱${formatPrice(cart.price * cart.cartCount)}</td>
+        <td class="p-3 align-middle border-light"><i class="fa-solid fa-trash trashItem" data-id="${cart.id}"></i></td>
+      </tr>`
+      })
+      .join('')
+  } else {
+    tbody.innerHTML = '<h3>Cart is Empty</h3>'
+  }
+
+  // add and subtract quantity product
+  const addQ = document.querySelectorAll('.addQ')
+  const subtractQ = document.querySelectorAll('.subtractQ')
+  const trashItem = document.querySelectorAll('.trashItem')
+  addQ.forEach((add) => {
+    add.addEventListener('click', () => changeQuantity('add', +add.dataset.id))
+  })
+  subtractQ.forEach((sub) => {
+    sub.addEventListener('click', () => changeQuantity('subract', +sub.dataset.id))
+  })
+
+  trashItem.forEach((trash) => {
+    trash.addEventListener('click', function (e) {
+      const el = e.target
+      if (el.classList.contains('trashItem')) {
+        deleteCartItem(trash.dataset.id)
+      }
+    })
+  })
+}
+
+const renderCartTotal = () => {
+  const subtotal = document.getElementById('subtotal')
+  const deliveryFeeOption = document.getElementById('deliveryFeeOption')
+  const deliveryFee = document.getElementById('deliveryFee')
+  const total = document.getElementById('total')
+
+  const checkoutBtn = document.getElementById('checkoutBtn')
+  let totalPrice = 0
+  let shippingFee = 0
+
+  cartCountItems.forEach((cart) => {
+    totalPrice += cart.price * cart.cartCount
+    totalPrice += shippingFee
+  })
+
+  subtotal.textContent = `₱${formatPrice(totalPrice)}`
+  total.textContent = `₱${formatPrice(totalPrice + +shippingFee)}`
+
+  deliveryFeeOption.addEventListener('change', function () {
+    shippingFee = deliveryFeeOption.value
+    deliveryFee.textContent = `₱${deliveryFeeOption.value}`
+    total.textContent = `₱${formatPrice(totalPrice + +shippingFee)}`
+    // if there is shipping fee make the button enable else disabled
+    Number(shippingFee) ? (checkoutBtn.disabled = false) : (checkoutBtn.disabled = true)
+  })
+}
+
+const changeQuantity = (action, id) => {
+  cartCountItems = cartCountItems.map((cart) => {
+    let cartCount = cart.cartCount
+    if (cart.id === id) {
+      if (action === 'add') {
+        cartCount++
+      } else if (action === 'subract') {
+        cartCount--
+        if (cartCount <= 0) {
+          cartCount = 1
+        }
+      }
+    }
+    return {
+      ...cart,
+      cartCount,
+    }
+  })
+  localStorage.setItem('cart', JSON.stringify(cartCountItems))
+  renderCartItems()
+  renderCartTotal()
+}
+
 // stack overflow
 const formatPrice = (num) => {
   return String(num).replace(/(.)(?=(\d{3})+$)/g, '$1,')
@@ -207,6 +310,10 @@ const renderWhichPage = () => {
       break
     case '/item-details.html':
       renderSpecificItem()
+      break
+    case '/cart.html':
+      renderCartItems()
+      renderCartTotal()
       break
   }
 }

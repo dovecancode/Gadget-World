@@ -59,50 +59,7 @@
                       <th class="border-0" scope="col">Total</th>
                     </tr>
                   </thead>
-                  <tbody class="border-0">
-                    <tr>
-                      <td class="ps-0 py-3 border-light">
-                        <a href="#" class="d-flex gap-3 align-items-center">
-                          <img src="img/items/keyboard-1.jpg" alt="" width="60" />
-                          <p class="mt-4">Portable Collapsible Phone Stand</p>
-                        </a>
-                      </td>
-                      <td class="p-3 align-middle border-light">₱250</td>
-                      <td class="p-3 align-middle border-light">
-                        <div class="q border px-2 quantity d-flex align-items-center justify-content-between">
-                          <p class="my-2">Quantity</p>
-                          <div class="quantity">
-                            <button class="btn"><i class="fa-solid fa-caret-left"></i></button>
-                            <span>1</span>
-                            <button class="btn"><i class="fa-solid fa-caret-right"></i></button>
-                          </div>
-                        </div>
-                      </td>
-                      <td class="p-3 align-middle border-light">₱250</td>
-                      <td class="p-3 align-middle border-light"><i class="fa-solid fa-trash"></i></td>
-                    </tr>
-                    <tr>
-                      <td class="ps-0 py-3 border-light">
-                        <a href="#" class="d-flex gap-3 align-items-center">
-                          <img src="img/items/keyboard-1.jpg" alt="" width="60" />
-                          <p class="mt-4">Portable Collapsible Phone Stand</p>
-                        </a>
-                      </td>
-                      <td class="p-3 align-middle border-light">₱250</td>
-                      <td class="p-3 align-middle border-light">
-                        <div class="q border px-2 quantity d-flex align-items-center justify-content-between">
-                          <p class="my-2">Quantity</p>
-                          <div class="quantity">
-                            <button class="btn"><i class="fa-solid fa-caret-left"></i></button>
-                            <span>1</span>
-                            <button class="btn"><i class="fa-solid fa-caret-right"></i></button>
-                          </div>
-                        </div>
-                      </td>
-                      <td class="p-3 align-middle border-light">₱250</td>
-                      <td class="p-3 align-middle border-light"><i class="fa-solid fa-trash"></i></td>
-                    </tr>
-                  </tbody>
+                  <tbody class="border-0"></tbody>
                 </table>
               </div>
             </div>
@@ -112,20 +69,30 @@
                   <h5 class="card-title fw-bolder mb-4">Cart Total</h5>
                   <p class="card-text fw-bolder">Shipping</p>
                   <div class="shipping-options mb-3">
-                    <select class="form-select" aria-label="Default select example">
-                      <option selected>Standard Delivery - ₱50</option>
-                      <option value="1">Fast Delivery - ₱100</option>
-                      <option value="2">More Faster Delivery - ₱500</option>
-                      <option value="3">Door step right away Delivery 5min minimum - ₱1000</option>
+                    <select id="deliveryFeeOption" class="form-select" aria-label="Default select example">
+                      <option selected value="0">Delivery Options</option>
+                      <option value="50">Standard Delivery - ₱50</option>
+                      <option value="100">Fast Delivery - ₱100</option>
+                      <option value="500">More Faster Delivery - ₱500</option>
+                      <option value="1000">Door step right away Delivery 5min minimum - ₱1000</option>
                     </select>
                   </div>
                   <div class="d-flex justify-content-between">
-                    <p class="h5">Total</p>
-                    <p class="h5">₱500</p>
+                    <p class="h5">Subtotal</p>
+                    <p class="h5" id="subtotal">₱0</p>
+                  </div>
+                  <div class="d-flex justify-content-between">
+                    <p>Shipping Fee</p>
+                    <p id="deliveryFee">₱0</p>
+                  </div>
+                  <hr />
+                  <div class="d-flex justify-content-between">
+                    <p class="h4">Total</p>
+                    <p class="h5" id="total">₱0</p>
                   </div>
                 </div>
               </div>
-              <button type="button" class="btn btn-purple btn-block btn-lg">
+              <button disabled type="button" class="btn btn-purple btn-block btn-lg" id="checkoutBtn">
                 <div class="d-flex justify-content-between">
                   <span>Checkout</span>
                   <span>₱250</span>
