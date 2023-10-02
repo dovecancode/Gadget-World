@@ -1,5 +1,25 @@
 const currentPage = window.location.pathname
-const productsData = products
+import productsData from './data.js'
+import { formSlider, sliderThumb } from './effect.js'
+
+const cartCountEl = document.getElementById('cartCount')
+
+// function for fetching data from localStorage
+const getCartFromStorage = () => {
+  let cart
+  if (localStorage.getItem('cart') === null) {
+    cart = []
+  } else {
+    cart = JSON.parse(localStorage.getItem('cart'))
+  }
+  return cart
+}
+
+// store data from localstorage to a variable
+let cartCountItems = getCartFromStorage()
+
+// for UI -> indicates how many items in cart page
+cartCountEl.textContent = cartCountItems.length
 
 const renderHomeProducts = () => {
   const homeProductsEl = document.getElementById('home-products')
@@ -11,7 +31,7 @@ const renderHomeProducts = () => {
         <a href="item-details.html?id=${product.id}">
           <div class="product-item">
             <img src="${product.featureImg}" class="card-img-top radius-padding" alt="Cell Phone" />
-            <a role="button" class="btn btn-purple btn-block add-to-cart" id="add-to-cart" onclick="addToCart(${product.id})">ADD TO CART</a>
+            <button type="button" class="btn btn-purple btn-block add-to-cart" id="add-to-cart" data-id="${product.id}">ADD TO CART</button>
           </div>
         </a>
         <a href="item-details.html?id=3">
@@ -26,6 +46,45 @@ const renderHomeProducts = () => {
     .join('')
 
   homeProductsEl.innerHTML = prodEight
+
+  const cartBtns = document.querySelectorAll('.add-to-cart')
+  cartBtns.forEach((btn) => {
+    btn.addEventListener('click', function (e) {
+      e.preventDefault()
+      addToCart(+btn.dataset.id)
+      btn.disabled = 'true'
+      btn.style.pointerEvents = 'unset'
+      btn.textContent = 'In Cart'
+      alert('Added to Cart')
+    })
+  })
+
+  cartBtns.forEach((btn) => {
+    const id = +btn.dataset.id
+    const isInCart = cartCountItems.find((item) => item.id === id)
+
+    if (isInCart) {
+      btn.disabled = 'true'
+      btn.style.pointerEvents = 'unset'
+      btn.textContent = 'In Cart'
+    }
+  })
+}
+
+// addcart to localstorage
+const addToCart = (id) => {
+  const cart = getCartFromStorage()
+  const itemFound = productsData.find((product) => product.id === id)
+
+  cart.push({ ...itemFound, cartCount: 1 })
+
+  localStorage.setItem('cart', JSON.stringify(cart))
+
+  updateCart()
+}
+
+const updateCart = () => {
+  cartCountEl.textContent = getCartFromStorage().length
 }
 
 // Render all items in Shop Page
@@ -38,7 +97,7 @@ const renderShopPageItems = () => {
         <a href="item-details.html?id=${product.id}">
           <div class="product-item">
             <img src="${product.featureImg}" class="card-img-top radius-padding" alt="Cell Phone" />
-            <a role="button" class="btn btn-purple btn-block add-to-cart">ADD TO CART</a>
+            <button type="button" class="btn btn-purple btn-block add-to-cart" id="add-to-cart" data-id="${product.id}">ADD TO CART</button>
           </div>
         </a>
         <a href="item-details.html?id=3">
@@ -53,6 +112,29 @@ const renderShopPageItems = () => {
     .join('')
 
   shopPageProductsEl.innerHTML = product
+
+  const cartBtns = document.querySelectorAll('.add-to-cart')
+  cartBtns.forEach((btn) => {
+    btn.addEventListener('click', function (e) {
+      e.preventDefault()
+      addToCart(+btn.dataset.id)
+      btn.disabled = 'true'
+      btn.style.pointerEvents = 'unset'
+      btn.textContent = 'In Cart'
+      alert('Added to Cart')
+    })
+  })
+
+  cartBtns.forEach((btn) => {
+    const id = +btn.dataset.id
+    const isInCart = cartCountItems.find((item) => item.id === id)
+
+    if (isInCart) {
+      btn.disabled = 'true'
+      btn.style.pointerEvents = 'unset'
+      btn.textContent = 'In Cart'
+    }
+  })
 }
 
 const renderSpecificItem = () => {
@@ -109,6 +191,109 @@ const renderSpecificItem = () => {
   sliderThumb()
 }
 
+const renderCartItems = () => {
+  const tbody = document.querySelector('tbody')
+  if (cartCountItems.length) {
+    tbody.innerHTML = cartCountItems
+      .map((cart) => {
+        return `<tr>
+        <td class="ps-0 py-3 border-light">
+          <a href="item-details.html?id=${cart.id}" class="d-flex gap-3 align-items-center">
+            <img src="${cart.featureImg}" alt="" width="60" />
+            <p class="mt-4">${cart.title}</p>
+          </a>
+        </td>
+        <td class="p-3 align-middle border-light">₱${formatPrice(cart.price)}</td>
+        <td class="p-3 align-middle border-light">
+          <div class="q border px-2 quantity d-flex align-items-center justify-content-between">
+            <p class="my-2">Quantity</p>
+            <div class="quantity">
+              <button class="btn subtractQ" data-id="${cart.id}"><i class="fa-solid fa-caret-left"></i></button>
+              <span id="quantity">${cart.cartCount}</span>
+              <button class="btn addQ" data-id="${cart.id}"><i class="fa-solid fa-caret-right"></i></button>
+            </div>
+          </div>
+        </td>
+        <td class="p-3 align-middle border-light">₱${formatPrice(cart.price * cart.cartCount)}</td>
+        <td class="p-3 align-middle border-light"><i class="fa-solid fa-trash trashItem" data-id="${cart.id}"></i></td>
+      </tr>`
+      })
+      .join('')
+  } else {
+    tbody.innerHTML = '<h3>Cart is Empty</h3>'
+  }
+
+  // add and subtract quantity product
+  const addQ = document.querySelectorAll('.addQ')
+  const subtractQ = document.querySelectorAll('.subtractQ')
+  const trashItem = document.querySelectorAll('.trashItem')
+  addQ.forEach((add) => {
+    add.addEventListener('click', () => changeQuantity('add', +add.dataset.id))
+  })
+  subtractQ.forEach((sub) => {
+    sub.addEventListener('click', () => changeQuantity('subract', +sub.dataset.id))
+  })
+
+  trashItem.forEach((trash) => {
+    trash.addEventListener('click', function (e) {
+      const el = e.target
+      if (el.classList.contains('trashItem')) {
+        deleteCartItem(trash.dataset.id)
+      }
+    })
+  })
+}
+
+const renderCartTotal = () => {
+  const subtotal = document.getElementById('subtotal')
+  const deliveryFeeOption = document.getElementById('deliveryFeeOption')
+  const deliveryFee = document.getElementById('deliveryFee')
+  const total = document.getElementById('total')
+
+  const checkoutBtn = document.getElementById('checkoutBtn')
+  let totalPrice = 0
+  let shippingFee = 0
+
+  cartCountItems.forEach((cart) => {
+    totalPrice += cart.price * cart.cartCount
+    totalPrice += shippingFee
+  })
+
+  subtotal.textContent = `₱${formatPrice(totalPrice)}`
+  total.textContent = `₱${formatPrice(totalPrice + +shippingFee)}`
+
+  deliveryFeeOption.addEventListener('change', function () {
+    shippingFee = deliveryFeeOption.value
+    deliveryFee.textContent = `₱${deliveryFeeOption.value}`
+    total.textContent = `₱${formatPrice(totalPrice + +shippingFee)}`
+    // if there is shipping fee make the button enable else disabled
+    Number(shippingFee) ? (checkoutBtn.disabled = false) : (checkoutBtn.disabled = true)
+  })
+}
+
+const changeQuantity = (action, id) => {
+  cartCountItems = cartCountItems.map((cart) => {
+    let cartCount = cart.cartCount
+    if (cart.id === id) {
+      if (action === 'add') {
+        cartCount++
+      } else if (action === 'subract') {
+        cartCount--
+        if (cartCount <= 0) {
+          cartCount = 1
+        }
+      }
+    }
+    return {
+      ...cart,
+      cartCount,
+    }
+  })
+  localStorage.setItem('cart', JSON.stringify(cartCountItems))
+  renderCartItems()
+  renderCartTotal()
+}
+
 // stack overflow
 const formatPrice = (num) => {
   return String(num).replace(/(.)(?=(\d{3})+$)/g, '$1,')
@@ -126,7 +311,11 @@ const renderWhichPage = () => {
     case '/item-details.html':
       renderSpecificItem()
       break
+    case '/cart.html':
+      renderCartItems()
+      renderCartTotal()
+      break
   }
 }
-
+formSlider()
 renderWhichPage()

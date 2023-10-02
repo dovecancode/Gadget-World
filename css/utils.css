@@ -1,5 +1,6 @@
 /* utils */
-.btn-purple {
+.btn-purple,
+.btn:disabled {
   background: var(--primary-color);
   color: #fff;
   transition: all 0.5s;
