@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/utils.css" />
+  <title>Checkout</title>
+</head>
+<body>
+    <!-- Nav Start -->
+    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+        <div class="container">
+          <a class="navbar-brand" href="#"><img src="img/logo.svg" alt="" /></a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto me-center mb-2 mb-lg-0">
+              <li class="nav-item">
+                <a class="nav-link" aria-current="page" href="index.html">Home</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="product.html">Shop</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">About</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">Contact</a>
+              </li>
+            </ul>
+            <ul class="navbar-nav mb-2 mb-lg-0">
+              <li class="nav-item">
+                <a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="fa-regular fa-user"></i> Login/Register</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#"><i class="fa-solid fa-cart-shopping"></i> &nbsp;<span id="cartCount">0</span></a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+  <!-- Nav End -->
+  <!-- Checkout Start -->
+  <section class="checkout container pt-5 pb-5">
+    <div class="row g-5">
+      <div class="col-md-5 col-lg-4 order-md-last">
+        <h4 class="d-flex justify-content-between align-items-center mb-3">
+          <p>YOUR ORDER</p>
+        </h4>
+        <ul class="list-group mb-3">
+          <li class="list-group-item d-flex justify-content-between lh-sm">
+            <div>
+              <h6 class="my-0">Product name</h6>
+            </div>
+            <span>Price</span>
+          </li>
+          <li class="list-group-item d-flex justify-content-between lh-sm">
+            <div>
+              <h6 class="my-0"></h6>
+            </div>
+            <span class="text-body-secondary">₱ 0</span>
+          </li>
+          <li class="list-group-item d-flex justify-content-between">
+            <span>Total</span>
+            <strong>₱ 0</strong>
+          </li>
+        </ul>
+      </div>
+
+      <div class="col-md-7 col-lg-8">
+        <h4 class="mb-3">Billing address</h4>
+        <form id="form">
+          <div class="row g-3">
+            <div class="col-sm-6 input-control">
+              <label for="firstName" class="form-label">First name</label>
+              <input type="text" class="form-control" id="firstName" name="username" placeholder="Juan">
+              <div class="error"></div>
+            </div>
+
+            <div class="col-sm-6 input-control">
+              <label for="lastName" class="form-label">Last name</label>
+              <input type="text" class="form-control" id="lastName" name="username" placeholder="Dela Cruz">
+              <div class="error"></div>
+            </div>
+
+            <div class="col-12 input-control">
+              <label for="email" class="form-label">Email</label>
+              <input type="email" class="form-control" id="email" name="username" placeholder="email@example.com">
+              <div class="error"></div>
+            </div>
+
+            <div class="col-12 input-control">
+              <label for="permanentAddress" class="form-label">Permanent Address</label>
+              <input type="text" class="form-control" id="permanentAddress" name="username" placeholder="1234 New born St">
+              <div class="error"></div>
+            </div>
+
+            <div class="col-12 input-control">
+              <label for="presentAddress" class="form-label">Present Address</label>
+              <input type="text" class="form-control" id="presentAddress" name="username" placeholder="1234 New born St">
+              <div class="error"></div>
+            </div>
+
+            <div class="col-md-5 input-control">
+              <label for="province" class="form-label">Province</label>
+              <select class="form-select" id="province" name="username">
+                <option value="">Choose...</option>
+                <option>Ilocos</option>
+                <option>Cagayan Valley</option>
+                <option>Central Luzon</option>
+                <option>CALABARZON</option>
+                <option>MIMAROPA</option>
+                <option>Bicol</option>
+                <option>Western Visayas</option>
+                <option>Central Visayas</option>
+                <option>Eastern Visayas</option>
+                <option>Zamboanga Peninsula</option>
+                <option>Northern Mindanao</option>
+                <option>Davao</option>
+                <option>SOCCSKSARGEN</option>
+                <option>CARAGA</option>
+                <option>National Capital Region</option>
+                <option>CAR</option>
+                <option>BARMM</option>
+              </select>
+              <div class="error"></div>
+            </div>
+
+            <div class="col-md-4 input-control">
+              <label for="city" class="form-label">City</label>
+              <select class="form-select" id="city" name="username">
+                <option value="">Choose...</option>
+                <option>Laoag City</option>
+                <option>Vigan City</option>
+                <option>San Fernando City</option>
+                <option>Dagupan City</option>
+                <option>San Carlos City</option>
+                <option>Urdaneta City</option>
+                <option>Tuguegarao City</option>
+                <option>Cauayan City</option>
+                <option>Bataan</option>
+                <option>Bulacan</option>
+                <option>Aurora</option>
+                <option>Tarlac</option>
+                <option>Pampanga</option>
+                <option>Zambales</option>
+                <option>Nueva Ecija</option>
+                <option>Cavite</option>
+                <option>Laguna</option>
+                <option>Batangas</option>
+                <option>Rizal</option>
+                <option>Quezon</option>
+                <option>Occidental Mindoro</option>
+                <option>Oriental Mindoro</option>
+                <option>Marinduque</option>
+                <option>Romblon</option>
+                <option>Palawan</option>
+                <option>Manila</option>
+                <option>Quezon City</option>
+                <option>Makati</option>
+                <option>Las Pinas</option>
+                <option>Malabon</option>
+                <option>Muntinlupa</option>
+                <option>Mandaluyong</option>
+                <option>Marikina</option>
+                <option>Navotas</option>
+                <option>Pasig</option>
+                <option>Paranaque</option>
+                <option>San Juan</option>
+                <option>Venezuela</option>
+                <option>Taguig</option>
+              </select>
+              <div class="error"></div>
+            </div>
+
+            <div class="col-md-3 input-control">
+              <label for="zip" class="form-label">Zip</label>
+              <input type="number" class="form-control" id="zip" name="username" placeholder="">
+              <div class="error"></div>
+            </div>
+          </div>
+
+          <hr class="my-4">
+
+          <button class="w-100 btn btn-primary btn-lg" type="submit">Continue to checkout</button>
+        </form>
+      </div>
+    </div>
+  </section>
+  <!-- Checkout End -->
+  <!-- Footer Start -->
+  <footer class="footer bg-black text-light py-5">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-3 touch">
+          <h4>Get in touch</h4>
+          <p>Call Us 24/7 Free</p>
+          <p>+63 912 345 6547</p>
+          <p>983 Horacio Loop Suite 068, NH 75674, Lockmanburgh</p>
+          <div class="foooter-social d-flex gap-3">
+            <a href="#"> <i class="fa-brands fa-facebook-f"></i></a>
+            <a href="#"> <i class="fa-brands fa-twitter"></i></a>
+            <a href="#"> <i class="fa-brands fa-instagram"></i></a>
+          </div>
+        </div>
+        <div class="col-md-3 info">
+          <h4>Information</h4>
+          <ul>
+            <li><a href="#">About us</a></li>
+            <li><a href="#">Contact us</a></li>
+            <li><a href="#">Shipping FAQs</a></li>
+            <li><a href="#">All Products</a></li>
+          </ul>
+        </div>
+        <div class="col-md-3 links">
+          <h4>Useful Links</h4>
+          <ul>
+            <li><a href="#">Smartphones</a></li>
+            <li><a href="#">Headphones</a></li>
+            <li><a href="#">Headphones</a></li>
+            <li><a href="#">Gadgets</a></li>
+          </ul>
+        </div>
+        <div class="col-md-3 newsletter">
+          <h4>Sign Up To Newsletter</h4>
+          <p>Join the 60.000+ subscribers and receive a fresh voucher for a discount each Saturday.</p>
+          <form class="d-flex" role="search">
+            <!-- <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" />
+            <button class="btn btn-outline-success" type="submit">Search</button> -->
+            <div class="input-group mb-3">
+              <input type="text" class="form-control email-input" placeholder="Your email address..." aria-label="Recipient's username" aria-describedby="basic-addon2" />
+              <button class="input-group-text sub" id="basic-addon2">subscribe</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </footer>
+  <!-- Footer End -->
+  <!-- Copyright Start -->
+  <div class="copyright py-4">
+    <div class="container d-flex justify-content-lg-between justify-content-sm-center align-items-center flex-wrap">
+      <small>© 2023 Gadget World. All rights reserved.</small>
+      <img src="img/payments.jpg" alt="payments" />
+    </div>
+  </div>
+  <!-- Copyright Start -->
+  <!-- Modal -->
+  <div class="modal custom fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <!-- <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1> -->
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="moda-login">
+            <div class="modal-choice text-center mb-4">
+              <button type="button" id="loginBtn" class="btn">Login</button>
+              <button type="button" id="registerBtn" class="btn">Register</button>
+            </div>
+            <div class="modal-form">
+              <form id="login" class="log-form">
+                <div class="mb-3">
+                  <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Email" />
+                </div>
+                <div class="mb-3">
+                  <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" />
+                </div>
+                <p><a href="#">Forgot your password?</a></p>
+                <button type="submit" class="btn btn-purple">Sign In</button>
+              </form>
+              <form id="register" class="log-form">
+                <div class="mb-3">
+                  <input type="text" class="form-control" id="username" placeholder="Username" />
+                </div>
+                <div class="mb-3">
+                  <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Email" />
+                </div>
+                <div class="mb-3">
+                  <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" />
+                </div>
+
+                <button type="submit" class="btn btn-purple">Sign Up</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Modal End-->
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+  <script src="checkout.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
