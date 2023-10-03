@@ -253,3 +253,20 @@ a:active.font-color {
 .slider-thumb li {
   width: 60px;
 }
+/* Check out start */
+.input-control .error {
+  color: #ff3860;
+  font-size: 14px;
+  height: 13px;
+}
+/* Warning Start */
+.oops {
+  font-size: 30px;
+  font-weight: bold;
+}
+.warning {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
