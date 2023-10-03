@@ -280,6 +280,10 @@ const renderCartTotal = () => {
     // if there is shipping fee make the button enable else disabled
     Number(shippingFee) ? (checkoutBtn.disabled = false) : (checkoutBtn.disabled = true)
   })
+
+  checkoutBtn.addEventListener('click', function () {
+    window.location.href = './checkout.html'
+  })
 }
 
 const changeQuantity = (action, id) => {
