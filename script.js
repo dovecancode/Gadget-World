@@ -249,6 +249,7 @@ const deleteCartItem = (id) => {
   localStorage.setItem('cart', JSON.stringify(cartCountItems))
   renderCartItems()
   renderCartTotal()
+  updateCart()
 }
 
 const renderCartTotal = () => {
