@@ -109,6 +109,7 @@ const renderShopPageItems = () => {
       </div>
     </div>`
     })
+    .sort(() => Math.random() - 0.5)
     .join('')
 
   shopPageProductsEl.innerHTML = product
