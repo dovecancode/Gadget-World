@@ -331,6 +331,7 @@ const renderRecomendeProd = (el) => {
     </div>
   </div>`
     })
+    .sort(() => Math.random() - 0.5)
     .join(' ')
 
   el.innerHTML = productEight
