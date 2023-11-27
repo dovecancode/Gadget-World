@@ -88,9 +88,10 @@ const updateCart = () => {
 }
 
 // Render all items in Shop Page
-const renderShopPageItems = () => {
+const renderShopPageItems = (prod) => {
+  // console.log(prod)
   const shopPageProductsEl = document.getElementById('product-items')
-  const product = productsData
+  const product = prod
     .map((product) => {
       return `<div class="col-md-4 col-sm-6 mb-3">
       <div class="card item">
@@ -111,9 +112,7 @@ const renderShopPageItems = () => {
     })
     .sort(() => Math.random() - 0.5)
     .join('')
-
   shopPageProductsEl.innerHTML = product
-
   const cartBtns = document.querySelectorAll('.add-to-cart')
   cartBtns.forEach((btn) => {
     btn.addEventListener('click', function (e) {
@@ -125,16 +124,34 @@ const renderShopPageItems = () => {
       alert('Added to Cart')
     })
   })
-
   cartBtns.forEach((btn) => {
     const id = +btn.dataset.id
     const isInCart = cartCountItems.find((item) => item.id === id)
-
     if (isInCart) {
       btn.disabled = 'true'
       btn.style.pointerEvents = 'unset'
       btn.textContent = 'In Cart'
     }
+  })
+}
+
+function renderCategoriesScreen() {
+  const categorContainer = document.querySelector('.categories ul')
+  const categoryItems = [...categorContainer.children]
+  categoryItems.forEach((item) => {
+    item.addEventListener('click', function () {
+      const categoryId = item.dataset.id
+
+      const filteredCat = productsData.filter((product) => {
+        if (categoryId === product.category) {
+          return product
+        } else if (categoryId === 'all') {
+          return productsData
+        }
+      })
+
+      renderShopPageItems(filteredCat)
+    })
   })
 }
 
@@ -370,7 +387,8 @@ const renderWhichPage = () => {
       renderHomeProducts()
       break
     case '/products.html':
-      renderShopPageItems()
+      renderCategoriesScreen()
+      renderShopPageItems(productsData)
       break
     case '/item-details.html':
       const relatedProd = document.getElementById('relatedProd')

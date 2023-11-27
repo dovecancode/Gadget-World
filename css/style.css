@@ -270,3 +270,18 @@ a:active.font-color {
   justify-content: center;
   align-items: center;
 }
+
+/* product page */
+.categories .section-header {
+  background: var(--primary-color);
+  border-radius: 0.5rem;
+}
+
+.categories li {
+  cursor: pointer;
+}
+
+.categories li.active {
+  color: var(--primary-color);
+  font-weight: bold;
+}
