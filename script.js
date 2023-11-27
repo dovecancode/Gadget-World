@@ -138,9 +138,12 @@ const renderShopPageItems = (prod) => {
 function renderCategoriesScreen() {
   const categorContainer = document.querySelector('.categories ul')
   const categoryItems = [...categorContainer.children]
+
   categoryItems.forEach((item) => {
     item.addEventListener('click', function () {
+      removeActiveClass()
       const categoryId = item.dataset.id
+      item.classList.add('active')
 
       const filteredCat = productsData.filter((product) => {
         if (categoryId === product.category) {
@@ -153,6 +156,14 @@ function renderCategoriesScreen() {
       renderShopPageItems(filteredCat)
     })
   })
+
+  function removeActiveClass() {
+    categoryItems.forEach((item) => {
+      if (item.classList.contains('active')) {
+        item.classList.remove('active')
+      }
+    })
+  }
 }
 
 const renderSpecificItem = () => {
