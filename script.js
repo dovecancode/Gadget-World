@@ -30,8 +30,12 @@ const renderHomeProducts = () => {
       <div class="card item">
         <a href="item-details.html?id=${product.id}">
           <div class="product-item">
-            <img src="${product.featureImg}" class="card-img-top radius-padding" alt="Cell Phone" />
-            <button type="button" class="btn btn-purple btn-block add-to-cart" id="add-to-cart" data-id="${product.id}">ADD TO CART</button>
+            <img src="${
+              product.featureImg
+            }" class="card-img-top radius-padding" alt="Cell Phone" />
+            <button type="button" class="btn btn-purple btn-block add-to-cart" id="add-to-cart" data-id="${
+              product.id
+            }">ADD TO CART</button>
           </div>
         </a>
         <a href="item-details.html?id=3">
@@ -72,11 +76,11 @@ const renderHomeProducts = () => {
 }
 
 // addcart to localstorage
-const addToCart = (id) => {
+const addToCart = (id, quantity = 1) => {
   const cart = getCartFromStorage()
   const itemFound = productsData.find((product) => product.id === id)
 
-  cart.push({ ...itemFound, cartCount: 1 })
+  cart.push({ ...itemFound, cartCount: quantity })
 
   localStorage.setItem('cart', JSON.stringify(cart))
 
@@ -97,8 +101,12 @@ const renderShopPageItems = (prod) => {
       <div class="card item">
         <a href="item-details.html?id=${product.id}">
           <div class="product-item">
-            <img src="${product.featureImg}" class="card-img-top radius-padding" alt="Cell Phone" />
-            <button type="button" class="btn btn-purple btn-block add-to-cart" id="add-to-cart" data-id="${product.id}">ADD TO CART</button>
+            <img src="${
+              product.featureImg
+            }" class="card-img-top radius-padding" alt="Cell Phone" />
+            <button type="button" class="btn btn-purple btn-block add-to-cart" id="add-to-cart" data-id="${
+              product.id
+            }">ADD TO CART</button>
           </div>
         </a>
         <a href="item-details.html?id=3">
@@ -169,39 +177,50 @@ function renderCategoriesScreen() {
 const renderSpecificItem = () => {
   const itemId = window.location.search.split('=')[1]
   const productDetails = document.getElementById('product-details')
+
   const foundItemProduct = productsData
     .map((product) => {
       if (product.id === +itemId) {
         return ` <div class="col-md-4">
       <div class="featured-img">
-        <img src="${product.featureImg}" alt="${product.title}" class="img-fluid product-feature" />
+        <img src="${product.featureImg}" alt="${
+          product.title
+        }" class="img-fluid product-feature" />
       </div>
       <div class="items-container">
         <i id="left" class="fa-solid fa-chevron-left"></i>
         <i id="right" class="fa-solid fa-chevron-right"></i>
         <ul class="slider-thumb mt-3">
-        ${product.imgs.map((img) => `<li><img class="img-fluid" src="${img}" alt="" /></li>`).join(' ')} 
+        ${product.imgs
+          .map(
+            (img) => `<li><img class="img-fluid" src="${img}" alt="" /></li>`
+          )
+          .join(' ')} 
         </ul>
       </div>
     </div>
     <div class="col-md-8">
       <h1 class="text-black">${product.title}</h1>
       <p>${product.desc}</p>
-      <p><strong class="text-primary h4">₱${formatPrice(product.price)}</strong></p>
+      <p><strong class="text-primary h4">₱${formatPrice(
+        product.price
+      )}</strong></p>
       <div class="mb-5">
         <div class="row align-items-center item-quantity-container">
           <div class="col-sm-5">
             <div class="q border px-3 quantity d-flex align-items-center justify-content-between">
               <p class="my-2">Quantity</p>
               <div class="quantity">
-                <button class="btn"><i class="fa-solid fa-caret-left"></i></button>
-                <span>1</span>
-                <button class="btn"><i class="fa-solid fa-caret-right"></i></button>
+                <button class="btn subtractQ"><i class="fa-solid fa-caret-left"></i></button>
+                <span id="q">${product.cartCount}</span>
+                <button class="btn addQ"><i class="fa-solid fa-caret-right"></i></button>
               </div>
             </div>
           </div>
           <div class="col-sm-3 cart-container">
-            <p class="my-2"><button class="btn btn-purple">Add To Cart</button></p>
+            <p class="my-2"><button data-id="${
+              product.id
+            }" id="add-to-cart" class="btn btn-purple">Add To Cart</button></p>
           </div>
         </div>
         <div class="mt-3 px-3 py-2 mb-1 d-inline-block bg-light">
@@ -218,6 +237,39 @@ const renderSpecificItem = () => {
 
   // Item thumb slider and featured image
   sliderThumb()
+
+  const qBtn = [...document.querySelectorAll('.quantity .btn')]
+  const q = document.querySelector('.quantity #q')
+  const addToCartEl = document.getElementById('add-to-cart')
+
+  let quantity
+  qBtn.forEach((btn) => {
+    btn.addEventListener('click', function (e) {
+      const targetEl = e.target
+      if (
+        targetEl.classList.contains('fa-caret-right') ||
+        targetEl.classList.contains('addQ')
+      ) {
+        quantity = +q.textContent
+        q.textContent = quantity += 1
+      } else {
+        quantity = +q.textContent
+        q.textContent = quantity -= 1
+        if (quantity <= 0) {
+          q.textContent = 1
+        }
+      }
+    })
+  })
+
+  addToCartEl.addEventListener('click', function (e) {
+    const id = e.target.dataset.id
+    addToCart(+id, quantity)
+    this.disabled = 'true'
+    this.style.pointerEvents = 'unset'
+    this.textContent = 'In Cart'
+    alert('Added to Cart')
+  })
 }
 
 const renderCartItems = () => {
@@ -227,24 +279,36 @@ const renderCartItems = () => {
       .map((cart) => {
         return `<tr>
         <td class="ps-0 py-3 border-light">
-          <a href="item-details.html?id=${cart.id}" class="d-flex gap-3 align-items-center">
+          <a href="item-details.html?id=${
+            cart.id
+          }" class="d-flex gap-3 align-items-center">
             <img src="${cart.featureImg}" alt="" width="60" />
             <p class="mt-4">${cart.title}</p>
           </a>
         </td>
-        <td class="p-3 align-middle border-light">₱${formatPrice(cart.price)}</td>
+        <td class="p-3 align-middle border-light">₱${formatPrice(
+          cart.price
+        )}</td>
         <td class="p-3 align-middle border-light">
           <div class="q border px-2 quantity d-flex align-items-center justify-content-between">
             <p class="my-2">Quantity</p>
             <div class="quantity">
-              <button class="btn subtractQ" data-id="${cart.id}"><i class="fa-solid fa-caret-left"></i></button>
+              <button class="btn subtractQ" data-id="${
+                cart.id
+              }"><i class="fa-solid fa-caret-left"></i></button>
               <span id="quantity">${cart.cartCount}</span>
-              <button class="btn addQ" data-id="${cart.id}"><i class="fa-solid fa-caret-right"></i></button>
+              <button class="btn addQ" data-id="${
+                cart.id
+              }"><i class="fa-solid fa-caret-right"></i></button>
             </div>
           </div>
         </td>
-        <td class="p-3 align-middle border-light">₱${formatPrice(cart.price * cart.cartCount)}</td>
-        <td class="p-3 align-middle border-light"><i class="fa-solid fa-trash trashItem" data-id="${cart.id}"></i></td>
+        <td class="p-3 align-middle border-light">₱${formatPrice(
+          cart.price * cart.cartCount
+        )}</td>
+        <td class="p-3 align-middle border-light"><i class="fa-solid fa-trash trashItem" data-id="${
+          cart.id
+        }"></i></td>
       </tr>`
       })
       .join('')
@@ -260,7 +324,9 @@ const renderCartItems = () => {
     add.addEventListener('click', () => changeQuantity('add', +add.dataset.id))
   })
   subtractQ.forEach((sub) => {
-    sub.addEventListener('click', () => changeQuantity('subract', +sub.dataset.id))
+    sub.addEventListener('click', () =>
+      changeQuantity('subract', +sub.dataset.id)
+    )
   })
 
   trashItem.forEach((trash) => {
@@ -307,7 +373,9 @@ const renderCartTotal = () => {
     total.textContent = `₱${formatPrice(totalPrice + +shippingFee)}`
     checkoutTotal.textContent = `₱${formatPrice(totalPrice + +shippingFee)}`
     // if there is shipping fee make the button enable else disabled
-    Number(shippingFee) ? (checkoutBtn.disabled = false) : (checkoutBtn.disabled = true)
+    Number(shippingFee)
+      ? (checkoutBtn.disabled = false)
+      : (checkoutBtn.disabled = true)
   })
 
   checkoutBtn.addEventListener('click', function () {
@@ -346,8 +414,12 @@ const renderRecomendeProd = (el) => {
       <a href="item-details.html?id=${product.id}">
         <div class="card item">
         <div class="product-item">
-          <img src="${product.featureImg}" class="card-img-top radius-padding" alt="Cell Phone" />
-          <button type="button" class="btn btn-purple btn-block add-to-cart" id="add-to-cart" data-id="${product.id}">ADD TO CART</button>
+          <img src="${
+            product.featureImg
+          }" class="card-img-top radius-padding" alt="Cell Phone" />
+          <button type="button" class="btn btn-purple btn-block add-to-cart" id="add-to-cart" data-id="${
+            product.id
+          }">ADD TO CART</button>
         </div>
         </a>
       <a href="item-details.html?id=${product.id}">
