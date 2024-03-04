@@ -5,6 +5,12 @@
   color: #fff;
   transition: all 0.5s;
 }
+.btn.subtractQ:disabled,
+.btn.addQ:disabled {
+  color: #212529;
+  background: transparent;
+  border: 0;
+}
 
 .btn-purple:hover {
   background: var(--secondary-color);
