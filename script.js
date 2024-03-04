@@ -135,6 +135,7 @@ const renderShopPageItems = (prod) => {
   cartBtns.forEach((btn) => {
     const id = +btn.dataset.id
     const isInCart = cartCountItems.find((item) => item.id === id)
+
     if (isInCart) {
       btn.disabled = 'true'
       btn.style.pointerEvents = 'unset'
@@ -241,11 +242,19 @@ const renderSpecificItem = () => {
   const qBtn = [...document.querySelectorAll('.quantity .btn')]
   const q = document.querySelector('.quantity #q')
   const addToCartEl = document.getElementById('add-to-cart')
+  const id = addToCartEl.dataset.id
+
+  const isInCart = cartCountItems.find((item) => item.id === +id)
 
   let quantity
   qBtn.forEach((btn) => {
     btn.addEventListener('click', function (e) {
       const targetEl = e.target
+
+      if (isInCart) {
+        alert('Already added to cart')
+      }
+
       if (
         targetEl.classList.contains('fa-caret-right') ||
         targetEl.classList.contains('addQ')
@@ -269,7 +278,21 @@ const renderSpecificItem = () => {
     this.style.pointerEvents = 'unset'
     this.textContent = 'In Cart'
     alert('Added to Cart')
+
+    qBtn.forEach((btn) => {
+      btn.disabled = true
+    })
   })
+
+  if (isInCart) {
+    addToCartEl.disabled = 'true'
+    addToCartEl.style.pointerEvents = 'unset'
+    addToCartEl.textContent = 'In Cart'
+    // q.textContent = isInCart.cartCount
+    qBtn.forEach((btn) => {
+      btn.disabled = true
+    })
+  }
 }
 
 const renderCartItems = () => {
@@ -480,9 +503,9 @@ const renderWhichPage = () => {
       break
     case '/cart.html':
       const recommendProd = document.getElementById('recommendProd')
-      renderCartItems()
       renderCartTotal()
       renderRecomendeProd(recommendProd)
+      renderCartItems()
       break
   }
 }
